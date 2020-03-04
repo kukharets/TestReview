@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
-import { frontend_url } from './app/const';
-import Container from './app/profile/containers/profile';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { routes } from './app/const';
+import ProfileContainer from './app/views/containers/profile';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Route path={frontend_url.profilePage} component={Container} />
-      </Router>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Route
+      path={routes.profilePage}
+      component={() => <ProfileContainer isWishList />}
+    />
+  );
+};
 
 export default App;

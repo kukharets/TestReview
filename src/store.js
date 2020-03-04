@@ -1,22 +1,11 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from 'redux-logger';
+import reducers from './rootReducer';
 
-import Reducer from './rootReducer';
-
-export const history = createHistory();
-
-const initialState = {
-  root: {},
-};
-
-const enhancers = [];
-
-const middleware = [routerMiddleware(history)];
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const composed = composeEnhancers(applyMiddleware(...middleware), ...enhancers);
-
-const store = createStore(Reducer, initialState, composed);
-
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(reduxThunk), applyMiddleware(logger)),
+);
 export default store;

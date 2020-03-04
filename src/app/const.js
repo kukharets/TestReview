@@ -1,10 +1,11 @@
-const backend_url = {
-  get_user_wishlist: '/get-user-wishlist/',
+const API = {
+  getUserWishList: '/get-user-wishlist/',
 };
 
-export const frontend_url = {
+const routes = {
   profilePage: '/profile-url/',
   mainPage: '/',
 };
 
-export default backend_url;
+export { routes };
+export default API;
